@@ -14,6 +14,8 @@ Traditional metrics like BLEU, METEOR, and ROUGE assess machine-generated output
 ### Dataset
 The E-Redial dataset was created to enhance the explanation quality of CRS. E-Redial, derived from the base dataset ReDial, addresses this by rewriting low-quality explanations based on identified characteristics: clear recommendation reason, representative item description, personal opinion, and contextual reasoning. The dataset is split into 2 parts, a training dataset with 756 conversations between a seeker (someone looking for a movie), and a recommender (whose job is to recommend an appropriate movie the the seker) and a test set in the same format with 150 conversations. 
 
+The E-redial dataset may be found here: https://github.com/Superbooming/E-Redial
+
 ### Target Creation
 The E-redial dataset lacks pre-existing classifications of good and bad recommendations. To address this, target labels are generated for the model to classify each conversation. Conversations are processed by summarizing each speaker's contributions using BART. The resulting summaries are embedded using BERT, and cosine similarity is employed to determine if a conversation is a good or bad recommendation.
 
@@ -44,5 +46,15 @@ A quick demo of the project can be found in the GitDemo.ipynb file in the main b
 3. Samples of the E-redial dataset after some preprocessing.
 4. Loads model weights from previous experiments to show results and the room for improvement!
 
+## Additional Information
    The files used, and the preloaded weights come from a digital ocean bucket which may be found here: https://f23deeplearning-eredial-classifier-demo.nyc3.digitaloceanspaces.com
+   The original code for the experiments is in the main branch as well. Small edits were made to the code in the demo, so be wary of little changes in functionality.
+   
+   If you are looking to adjust the target labels, the code used to generate them is in the misc_and_label_generator.py file. That file contains some other ideas and preprocessing techniques that were not implemented in this project. The target labels will be generated if the file is run, the other portions of the code have been commented out. The relevant functions in that code for label generation are:
+   1. addTargetLabels(idList, wholeConv): idList is an array of conversation IDs from E-redial. WholeConv is a dictionary where the key is the hash value of the ID, and the elements are two arrays one containing every sentence the seeker said, the other containing every sentence the recommender said in the conversation.
+   2. generateSummaryBart(string): This function takes in a string and uses bart to summarize the string
+   3. calcBertEmbeddings(string): This function takes in the summaries from Bart and calculates the bert embedding of the summary.
+   4. The functions are generically built to calculate target labels for the entire dataset, which takes some time. It may be best to adjust them to work in batches rather than going for the entire dataset. 
+
+   
 
