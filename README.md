@@ -4,7 +4,7 @@ A demo of 2 different pretrained models (BERT and GPT2) and their ability to cla
 # Conversational Recommendation Quality Classification
 ## Overview
 This repository focuses on the task of classifying conversational recommendations as either "good" or "bad." The main goal is to assess the quality of movie recommendations in conversations between a seeker and recommender using the E-redial dataset.
-See the powerpoint / paper in the presentation folder for more detailed information. 
+See the powerpoint / paper for more detailed information. 
 
 ### Background
 Conversational Recommender Systems (CRS) utilize conversations to recommend items to users. These systems consist of a conversation module aiming to extract relevant information efficiently and a recommendation module suggesting items to users based on gathered information. Interaction patterns in CRSs fall into four categories: System Active User Passive (SAUP), System Active User Engage (SAUE), System Active User Active (SAUA), and Active User Passive System (AUPS). The project addresses the gap in evaluating recommendation quality in conversational settings and aims to develop a network capable of classifying movie recommendations as good or bad.
